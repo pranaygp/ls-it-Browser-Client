@@ -10,9 +10,11 @@ export default class extends Component{
     this.onClose = this.onClose.bind(this)
     this.onMessage = this.onMessage.bind(this)
     this.onError = this.onError.bind(this)
+    this.removeTodo = this.removeTodo.bind(this)
+    this.addTodo = this.addTodo.bind(this)
   }
 
-  state = { list: [] }
+  state = { list: [], text: "" }
 
   wsUri = "wss://frigo.io/"
   // wsUri = "ws://localhost:3000/"
@@ -63,6 +65,20 @@ export default class extends Component{
     })
   }
 
+  addTodo(item) {
+    fetch(this.apiUri, {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        action: "add",
+        item
+      })
+    })
+    return true
+  }
+
   componentWillUnmount(){
     this.onClose()
   }
@@ -83,12 +99,19 @@ export default class extends Component{
                 this.state.list.map(item => 
                   <li 
                     key={item._id}
+                    className="list-item"
                     onClick={this.removeTodo.bind(this, item)}
                   >
                     {item.item}
                   </li>
                 )
               }
+              <input
+                type="text"
+                value={this.state.text}
+                onChange={e => this.setState({text: e.target.value})}
+                onKeyDown={e => e.keyCode === 13 && this.addTodo(this.state.text) && this.setState({text: ""})}
+              />
             </ul>
           </div>
         </div>
@@ -114,6 +137,15 @@ export default class extends Component{
             display: flex;
             flex-direction: row;
             justify-content: space-around;
+          }
+          .list-item {
+            list-style: none;
+            cursor: pointer;
+            padding: 10px;
+          }
+          .list-item:hover {
+            text-decoration: line-through;
+            color: #888
           }
         `}</style>
       </div>
