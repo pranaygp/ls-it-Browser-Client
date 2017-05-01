@@ -14,10 +14,10 @@ export default class extends Component{
 
   state = { list: [] }
 
-  wsUri = "ws://192.241.254.181/"
+  wsUri = "wss://frigo.io/"
   // wsUri = "ws://localhost:3000/"
 
-  apiUri = "http://192.241.254.181/1bd5807e-21de-4fbd-9002-87b71bee1b3f"
+  apiUri = "https://frigo.io/1bd5807e-21de-4fbd-9002-87b71bee1b3f"
   // apiUri = "http://localhost:3000/33857227-d9a9-4fbd-9b3b-add2d7d4f56a"
 
   componentDidMount(){
