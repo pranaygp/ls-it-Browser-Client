@@ -85,7 +85,7 @@ export default class extends Component{
 
   render(){
     return (
-      <div>
+      <div id="app">
         <Head title="Home" />
         <Nav />
 
@@ -117,6 +117,37 @@ export default class extends Component{
         </div>
 
         <style jsx>{`
+          @font-face {
+            font-family: FixEmoji;
+            unicode-range: U+20;
+            src: local("Arial")
+          }
+          #app {
+              -webkit-appearance: none;
+              -webkit-text-size-adjust: 100%;
+              -webkit-font-smoothing: antialiased;
+              box-sizing: border-box;
+              outline: none
+              display: flex;
+              flex-direction: column;
+              height: 100%;
+              font-family: FixEmoji, Roboto Mono, sans-serif;
+              color: #111;
+              font-size: 16px;
+              height: 100vh;
+              min-height: 100%;
+              margin: 0;
+              overflow: hidden;
+              background: #f6f6f6;
+              font-size: 20px;
+          }
+          #app::selection {
+              background: rgba(51, 204, 51, .15)
+          }
+          a {
+              color: #3c3;
+              text-decoration: none
+          }
           .hero {
             width: 100%;
             color: #333;
