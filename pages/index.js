@@ -1,4 +1,3 @@
-import Link from 'next/link'
 import React, { Component } from 'react'
 import { Head, Nav } from '../components'
 
@@ -23,7 +22,7 @@ export default class extends Component{
   // apiUri = "http://localhost:3000/33857227-d9a9-4fbd-9b3b-add2d7d4f56a"
 
   componentDidMount(){
-    this.websocket = new WebSocket(this.wsUri);
+    this.websocket = new WebSocket(this.wsUri)
     this.websocket.onopen = this.onOpen
     this.websocket.onclose = this.onClose
     this.websocket.onmessage = this.onMessage
@@ -101,8 +100,8 @@ export default class extends Component{
                     key={item._id}
                     className="list-item"
                     onClick={this.removeTodo.bind(this, item)}
+                    dangerouslySetInnerHTML={{ __html: item.item }}
                   >
-                    {item.item}
                   </li>
                 )
               }
